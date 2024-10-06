@@ -1,8 +1,8 @@
 namespace AutomaticScanning
 {
-    public partial class Form1 : Form
+    public partial class FrmAutomaticScanning : Form
     {
-        public Form1()
+        public FrmAutomaticScanning()
         {
             InitializeComponent();
         }
