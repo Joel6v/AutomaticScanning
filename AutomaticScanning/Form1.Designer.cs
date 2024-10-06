@@ -30,12 +30,12 @@
         {
             BtnScannerSettings = new Button();
             BtnSaveSettings = new Button();
-            pictureBox1 = new PictureBox();
+            PbxPreview = new PictureBox();
             BtnSave = new Button();
             BtnScan = new Button();
             BtnImgBack = new Button();
             BtnImgNext = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PbxPreview).BeginInit();
             SuspendLayout();
             // 
             // BtnScannerSettings
@@ -60,13 +60,14 @@
             BtnSaveSettings.Text = "Speichern Einstellungen";
             BtnSaveSettings.UseVisualStyleBackColor = false;
             // 
-            // pictureBox1
+            // PbxPreview
             // 
-            pictureBox1.Location = new Point(12, 60);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(450, 533);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
+            PbxPreview.BackColor = Color.FromArgb(224, 224, 224);
+            PbxPreview.Location = new Point(12, 60);
+            PbxPreview.Name = "PbxPreview";
+            PbxPreview.Size = new Size(450, 533);
+            PbxPreview.TabIndex = 2;
+            PbxPreview.TabStop = false;
             // 
             // BtnSave
             // 
@@ -75,7 +76,7 @@
             BtnSave.Location = new Point(357, 603);
             BtnSave.Name = "BtnSave";
             BtnSave.Size = new Size(105, 33);
-            BtnSave.TabIndex = 3;
+            BtnSave.TabIndex = 5;
             BtnSave.Text = "Speichern";
             BtnSave.UseVisualStyleBackColor = false;
             // 
@@ -86,7 +87,7 @@
             BtnScan.Location = new Point(12, 603);
             BtnScan.Name = "BtnScan";
             BtnScan.Size = new Size(105, 33);
-            BtnScan.TabIndex = 4;
+            BtnScan.TabIndex = 2;
             BtnScan.Text = "Scannen";
             BtnScan.UseVisualStyleBackColor = false;
             // 
@@ -95,7 +96,7 @@
             BtnImgBack.Location = new Point(217, 599);
             BtnImgBack.Name = "BtnImgBack";
             BtnImgBack.Size = new Size(25, 25);
-            BtnImgBack.TabIndex = 5;
+            BtnImgBack.TabIndex = 3;
             BtnImgBack.Text = "<";
             BtnImgBack.UseVisualStyleBackColor = true;
             // 
@@ -104,7 +105,7 @@
             BtnImgNext.Location = new Point(248, 599);
             BtnImgNext.Name = "BtnImgNext";
             BtnImgNext.Size = new Size(25, 25);
-            BtnImgNext.TabIndex = 6;
+            BtnImgNext.TabIndex = 4;
             BtnImgNext.Text = ">";
             BtnImgNext.UseVisualStyleBackColor = true;
             // 
@@ -117,12 +118,13 @@
             Controls.Add(BtnImgBack);
             Controls.Add(BtnScan);
             Controls.Add(BtnSave);
-            Controls.Add(pictureBox1);
+            Controls.Add(PbxPreview);
             Controls.Add(BtnSaveSettings);
             Controls.Add(BtnScannerSettings);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FrmAutomaticScanning";
             Text = "Automatisches Scannen";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PbxPreview).EndInit();
             ResumeLayout(false);
         }
 
@@ -130,7 +132,7 @@
 
         private Button BtnScannerSettings;
         private Button BtnSaveSettings;
-        private PictureBox pictureBox1;
+        private PictureBox PbxPreview;
         private Button BtnSave;
         private Button BtnScan;
         private Button BtnImgBack;
