@@ -124,6 +124,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FrmAutomaticScanning";
             Text = "Automatisches Scannen";
+            Load += FrmAutomaticScanning_Load;
             ((System.ComponentModel.ISupportInitialize)PbxPreview).EndInit();
             ResumeLayout(false);
         }

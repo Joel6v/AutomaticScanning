@@ -6,5 +6,10 @@ namespace AutomaticScanning
         {
             InitializeComponent();
         }
+
+        private void FrmAutomaticScanning_Load(object sender, EventArgs e)
+        {
+            FileHandler.StartupProgram();
+        }
     }
 }

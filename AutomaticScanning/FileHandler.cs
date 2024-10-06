@@ -16,28 +16,33 @@ namespace AutomaticScanning
         public static string UserSaveSettingsPath = UserFolderPath + "SaveSettings.json";
         public static UserSaveSettings UserSaveSettings;
 
-        public void StartupProgram()
+        public static void StartupProgram()
         {
             UserScannerSettings = ReadScannerSettingsJson();
             UserSaveSettings = ReadSaveSettingsJson();
         }
 
-        public UserScannerSettings ReadScannerSettingsJson()
+        public static void StartupProgramFirstTime()
         {
 
         }
 
-        public void WriteScannerSettingsJson()
+        public static UserScannerSettings ReadScannerSettingsJson()
         {
 
         }
 
-        public UserSaveSettings ReadSaveSettingsJson()
+        public static void WriteScannerSettingsJson()
         {
 
         }
 
-        public void WriteSaveSettingsJson()
+        public static UserSaveSettings ReadSaveSettingsJson()
+        {
+
+        }
+
+        public static void WriteSaveSettingsJson()
         {
 
         }
@@ -50,6 +55,6 @@ namespace AutomaticScanning
 
     class UserSaveSettings
     {
-
+        public bool make_parent_folder {  get; set; }
     }
 }
