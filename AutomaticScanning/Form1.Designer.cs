@@ -28,115 +28,110 @@
         /// </summary>
         private void InitializeComponent()
         {
-            BtnScannerSettings = new Button();
-            BtnSaveSettings = new Button();
-            PbxPreview = new PictureBox();
-            BtnSave = new Button();
             BtnScan = new Button();
-            BtnImgBack = new Button();
-            BtnImgNext = new Button();
-            ((System.ComponentModel.ISupportInitialize)PbxPreview).BeginInit();
+            BtnSettings = new Button();
+            panel1 = new Panel();
+            LbScanner = new Label();
+            this.CbxScannner = new ComboBox();
+            this.LbRes = new Label();
+            CbxRes = new ComboBox();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // BtnScannerSettings
-            // 
-            BtnScannerSettings.BackColor = Color.Gray;
-            BtnScannerSettings.Font = new Font("Segoe UI", 12F);
-            BtnScannerSettings.Location = new Point(12, 12);
-            BtnScannerSettings.Name = "BtnScannerSettings";
-            BtnScannerSettings.Size = new Size(172, 33);
-            BtnScannerSettings.TabIndex = 0;
-            BtnScannerSettings.Text = "Scanner Einstellungen";
-            BtnScannerSettings.UseVisualStyleBackColor = false;
-            // 
-            // BtnSaveSettings
-            // 
-            BtnSaveSettings.BackColor = Color.Gray;
-            BtnSaveSettings.Font = new Font("Segoe UI", 12F);
-            BtnSaveSettings.Location = new Point(277, 12);
-            BtnSaveSettings.Name = "BtnSaveSettings";
-            BtnSaveSettings.Size = new Size(185, 33);
-            BtnSaveSettings.TabIndex = 1;
-            BtnSaveSettings.Text = "Speichern Einstellungen";
-            BtnSaveSettings.UseVisualStyleBackColor = false;
-            // 
-            // PbxPreview
-            // 
-            PbxPreview.BackColor = Color.FromArgb(224, 224, 224);
-            PbxPreview.Location = new Point(12, 60);
-            PbxPreview.Name = "PbxPreview";
-            PbxPreview.Size = new Size(450, 533);
-            PbxPreview.TabIndex = 2;
-            PbxPreview.TabStop = false;
-            // 
-            // BtnSave
-            // 
-            BtnSave.BackColor = Color.Gray;
-            BtnSave.Font = new Font("Segoe UI", 12F);
-            BtnSave.Location = new Point(357, 603);
-            BtnSave.Name = "BtnSave";
-            BtnSave.Size = new Size(105, 33);
-            BtnSave.TabIndex = 5;
-            BtnSave.Text = "Speichern";
-            BtnSave.UseVisualStyleBackColor = false;
             // 
             // BtnScan
             // 
             BtnScan.BackColor = Color.Gray;
             BtnScan.Font = new Font("Segoe UI", 12F);
-            BtnScan.Location = new Point(12, 603);
+            BtnScan.Location = new Point(12, 189);
             BtnScan.Name = "BtnScan";
-            BtnScan.Size = new Size(105, 33);
-            BtnScan.TabIndex = 2;
+            BtnScan.Size = new Size(207, 33);
+            BtnScan.TabIndex = 5;
             BtnScan.Text = "Scannen";
             BtnScan.UseVisualStyleBackColor = false;
             // 
-            // BtnImgBack
+            // BtnSettings
             // 
-            BtnImgBack.Location = new Point(217, 599);
-            BtnImgBack.Name = "BtnImgBack";
-            BtnImgBack.Size = new Size(25, 25);
-            BtnImgBack.TabIndex = 3;
-            BtnImgBack.Text = "<";
-            BtnImgBack.UseVisualStyleBackColor = true;
+            BtnSettings.Font = new Font("Segoe UI", 12F);
+            BtnSettings.Location = new Point(103, 12);
+            BtnSettings.Name = "BtnSettings";
+            BtnSettings.Size = new Size(116, 33);
+            BtnSettings.TabIndex = 0;
+            BtnSettings.Text = "Einstellungen";
+            BtnSettings.UseVisualStyleBackColor = true;
             // 
-            // BtnImgNext
+            // panel1
             // 
-            BtnImgNext.Location = new Point(248, 599);
-            BtnImgNext.Name = "BtnImgNext";
-            BtnImgNext.Size = new Size(25, 25);
-            BtnImgNext.TabIndex = 4;
-            BtnImgNext.Text = ">";
-            BtnImgNext.UseVisualStyleBackColor = true;
+            panel1.Controls.Add(CbxRes);
+            panel1.Controls.Add(this.LbRes);
+            panel1.Controls.Add(this.CbxScannner);
+            panel1.Controls.Add(LbScanner);
+            panel1.Location = new Point(12, 51);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(207, 132);
+            panel1.TabIndex = 6;
+            // 
+            // LbScanner
+            // 
+            LbScanner.AutoSize = true;
+            LbScanner.Font = new Font("Segoe UI", 12F);
+            LbScanner.Location = new Point(12, 5);
+            LbScanner.Name = "LbScanner";
+            LbScanner.Size = new Size(66, 21);
+            LbScanner.TabIndex = 1;
+            LbScanner.Text = "Scanner";
+            // 
+            // CbxScannner
+            // 
+            this.CbxScannner.FormattingEnabled = true;
+            this.CbxScannner.Location = new Point(12, 29);
+            this.CbxScannner.Name = "CbxScannner";
+            this.CbxScannner.Size = new Size(185, 23);
+            this.CbxScannner.TabIndex = 2;
+            // 
+            // LbRes
+            // 
+            this.LbRes.AutoSize = true;
+            this.LbRes.Font = new Font("Segoe UI", 12F);
+            this.LbRes.Location = new Point(12, 74);
+            this.LbRes.Name = "LbRes";
+            this.LbRes.Size = new Size(81, 21);
+            this.LbRes.TabIndex = 3;
+            this.LbRes.Text = "Auflösung";
+            // 
+            // CbxRes
+            // 
+            CbxRes.FormattingEnabled = true;
+            CbxRes.Location = new Point(12, 98);
+            CbxRes.Name = "CbxRes";
+            CbxRes.Size = new Size(185, 23);
+            CbxRes.TabIndex = 4;
             // 
             // FrmAutomaticScanning
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(474, 648);
-            Controls.Add(BtnImgNext);
-            Controls.Add(BtnImgBack);
+            ClientSize = new Size(231, 235);
+            Controls.Add(panel1);
+            Controls.Add(BtnSettings);
             Controls.Add(BtnScan);
-            Controls.Add(BtnSave);
-            Controls.Add(PbxPreview);
-            Controls.Add(BtnSaveSettings);
-            Controls.Add(BtnScannerSettings);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FrmAutomaticScanning";
             Text = "Automatisches Scannen";
             Load += FrmAutomaticScanning_Load;
-            ((System.ComponentModel.ISupportInitialize)PbxPreview).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Button BtnScannerSettings;
-        private Button BtnSaveSettings;
-        private PictureBox PbxPreview;
-        private Button BtnSave;
         private Button BtnScan;
         private Button BtnImgBack;
         private Button BtnImgNext;
+        private Button BtnSettings;
+        private Panel panel1;
+        private ComboBox CbxRes;
+        private Label label2;
+        private ComboBox comboBox1;
+        private Label LbScanner;
     }
 }
