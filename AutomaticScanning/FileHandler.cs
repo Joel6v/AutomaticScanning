@@ -50,11 +50,17 @@ namespace AutomaticScanning
 
     class UserScannerSettings
     {
+        public string scanner {  get; set; } //what exactly this contains is known
+        public int dpi { get; set; }
 
     }
 
     class UserSaveSettings
     {
+        public bool aut_save {  get; set; }
         public bool make_parent_folder {  get; set; }
+        public string path_save {  get; set; } //not the folder name
+        public string file_extension { get; set; } //without .
+        public bool override_file {  get; set; } //if the file names are the same. Otherwise the file would be not saved
     }
 }

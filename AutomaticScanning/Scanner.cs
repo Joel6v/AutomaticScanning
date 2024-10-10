@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using WIA;
 
 namespace AutomaticScanning
@@ -24,7 +25,7 @@ namespace AutomaticScanning
                 ScannersList = new List<WIA.DeviceInfo>();
                 DeviceManager deviceManager = new DeviceManager();
 
-                for(int i = 0; i <= deviceManager.DeviceInfos.Count; i++)
+                for (int i = 0; i <= deviceManager.DeviceInfos.Count; i++)
                 {
                     if (deviceManager.DeviceInfos[i].Type == WiaDeviceType.ScannerDeviceType)
                     {
@@ -32,24 +33,42 @@ namespace AutomaticScanning
                     }
                 }
             }
-            catch(COMException ex) 
+            catch (COMException ex)
             {
                 throw ex;
             }
         }
 
-        public Bitmap Scan(WIA.DeviceInfo selectedScanner, int res)
+        public Bitmap Scan(DeviceInfo selectedScanner, int dpi)
         {
             try
             {
                 var device = selectedScanner.Connect();
-                var scanerItem = device.Items[0];
-                ImageFile imgFile = (ImageFile)scanerItem.Transfer(FormatID.wiaFormatBMP); //the other options must be added
-                return Bitmap.FromFile(imgFile);
+                Item scanerItem = device.Items[0];
+
+                Property propertyH = scanerItem.Properties.get_Item(6147); //Horizontal DPI
+                propertyH.set_Value(dpi);
+
+                Property propertyV = scanerItem.Properties.get_Item(6148); //Vertical DPI
+                propertyV.set_Value(dpi);
+
+                ImageFile imgFile = (ImageFile)scanerItem.Transfer("{B96B3CAB-0728-11D3-9D7B-0000F81EF32E}"); //{B9...} stands for as Bitmap
+                return ConvertImageFileToBitmap(imgFile);
             }
-            catch(COMException ex)
+            catch (COMException ex)
             {
                 throw ex;
+            }
+        }
+
+        private Bitmap ConvertImageFileToBitmap(ImageFile imageFile)
+        {
+            byte[] imageBytes = (byte[])imageFile.FileData.get_BinaryData();
+
+            using (MemoryStream stream = new MemoryStream(imageBytes))
+            {
+                Bitmap bitmap = new Bitmap(stream);
+                return bitmap;
             }
         }
     }
