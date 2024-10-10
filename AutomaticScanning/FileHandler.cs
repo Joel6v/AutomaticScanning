@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.IO;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace AutomaticScanning
@@ -18,8 +22,8 @@ namespace AutomaticScanning
 
         public static void StartupProgram()
         {
-            UserScannerSettings = ReadScannerSettingsJson();
-            UserSaveSettings = ReadSaveSettingsJson();
+            ReadScannerSettingsJson();
+            ReadSaveSettingsJson();
         }
 
         public static void StartupProgramFirstTime()
@@ -27,24 +31,38 @@ namespace AutomaticScanning
 
         }
 
-        public static UserScannerSettings ReadScannerSettingsJson()
+        public static void ReadScannerSettingsJson()
         {
-
+            string json = File.ReadAllText(UserScannerSettingsPath);
+            UserScannerSettings = JsonSerializer.Deserialize<UserScannerSettings>(json);
         }
 
         public static void WriteScannerSettingsJson()
         {
-
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.WriteIndented = true;
+            string json = JsonSerializer.Serialize(UserScannerSettings, options);
+            File.WriteAllText(UserScannerSettingsPath, json);
         }
 
-        public static UserSaveSettings ReadSaveSettingsJson()
+        public static void ReadSaveSettingsJson()
         {
-
+            string json = File.ReadAllText(UserSaveSettingsPath);
+            UserSaveSettings = JsonSerializer.Deserialize<UserSaveSettings>(json);
         }
 
         public static void WriteSaveSettingsJson()
         {
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.WriteIndented = true;
+            string json = JsonSerializer.Serialize(UserSaveSettings, options);
+            File.WriteAllText(UserSaveSettingsPath, json);
+        }
 
+        public bool CheckJsonFileHasContent(string path)
+        {
+            string content = File.ReadAllText(path);
+            return !string.IsNullOrEmpty(content);
         }
     }
 
@@ -52,7 +70,6 @@ namespace AutomaticScanning
     {
         public string scanner {  get; set; } //what exactly this contains is known
         public int dpi { get; set; }
-
     }
 
     class UserSaveSettings
