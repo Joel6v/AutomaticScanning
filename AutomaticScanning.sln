@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomaticScanning", "AutomaticScanning\AutomaticScanning.csproj", "{C16299B5-7F14-4945-894E-7C207CF5C0EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomaticScanning", "AutomaticScanning\AutomaticScanning.csproj", "{C16299B5-7F14-4945-894E-7C207CF5C0EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomaticScanningTests", "AutomaticScanningTests\AutomaticScanningTests.csproj", "{BAEB5D96-2A40-46D7-B558-AC76D918E773}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C16299B5-7F14-4945-894E-7C207CF5C0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C16299B5-7F14-4945-894E-7C207CF5C0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C16299B5-7F14-4945-894E-7C207CF5C0EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAEB5D96-2A40-46D7-B558-AC76D918E773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAEB5D96-2A40-46D7-B558-AC76D918E773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAEB5D96-2A40-46D7-B558-AC76D918E773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAEB5D96-2A40-46D7-B558-AC76D918E773}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

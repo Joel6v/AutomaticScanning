@@ -9,13 +9,15 @@ using WIA;
 
 namespace AutomaticScanning
 {
-    internal class Scanner
+    public class Scanner
     {
         public List<WIA.DeviceInfo> ScannersList { get; private set; }
+        public int ScannerListCount { get; private set; } //for testing reasons
 
         public Scanner()
         {
             GetScanners();
+            ScannerListCount = ScannersList.Count;
         }
 
         private void GetScanners()
@@ -39,10 +41,11 @@ namespace AutomaticScanning
             }
         }
 
-        public Bitmap Scan(DeviceInfo selectedScanner, int dpi)
+        public Bitmap Scan(int selectedScannerIndex, int dpi)
         {
             try
             {
+                DeviceInfo selectedScanner = ScannersList[selectedScannerIndex];
                 var device = selectedScanner.Connect();
                 Item scanerItem = device.Items[0];
 

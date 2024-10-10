@@ -32,9 +32,9 @@
             BtnSettings = new Button();
             panel1 = new Panel();
             LbScanner = new Label();
-            this.CbxScannner = new ComboBox();
-            this.LbRes = new Label();
-            CbxRes = new ComboBox();
+            CbxScanner = new ComboBox();
+            LbResolution = new Label();
+            CbxResolution = new ComboBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -61,9 +61,9 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(CbxRes);
-            panel1.Controls.Add(this.LbRes);
-            panel1.Controls.Add(this.CbxScannner);
+            panel1.Controls.Add(CbxResolution);
+            panel1.Controls.Add(LbResolution);
+            panel1.Controls.Add(CbxScanner);
             panel1.Controls.Add(LbScanner);
             panel1.Location = new Point(12, 51);
             panel1.Name = "panel1";
@@ -80,31 +80,31 @@
             LbScanner.TabIndex = 1;
             LbScanner.Text = "Scanner";
             // 
-            // CbxScannner
+            // CbxScanner
             // 
-            this.CbxScannner.FormattingEnabled = true;
-            this.CbxScannner.Location = new Point(12, 29);
-            this.CbxScannner.Name = "CbxScannner";
-            this.CbxScannner.Size = new Size(185, 23);
-            this.CbxScannner.TabIndex = 2;
+            CbxScanner.FormattingEnabled = true;
+            CbxScanner.Location = new Point(12, 29);
+            CbxScanner.Name = "CbxScanner";
+            CbxScanner.Size = new Size(192, 23);
+            CbxScanner.TabIndex = 2;
             // 
-            // LbRes
+            // LbResolution
             // 
-            this.LbRes.AutoSize = true;
-            this.LbRes.Font = new Font("Segoe UI", 12F);
-            this.LbRes.Location = new Point(12, 74);
-            this.LbRes.Name = "LbRes";
-            this.LbRes.Size = new Size(81, 21);
-            this.LbRes.TabIndex = 3;
-            this.LbRes.Text = "Auflösung";
+            LbResolution.AutoSize = true;
+            LbResolution.Font = new Font("Segoe UI", 12F);
+            LbResolution.Location = new Point(12, 67);
+            LbResolution.Name = "LbResolution";
+            LbResolution.Size = new Size(119, 21);
+            LbResolution.TabIndex = 4;
+            LbResolution.Text = "Auflösung (DPI)";
             // 
-            // CbxRes
+            // CbxResolution
             // 
-            CbxRes.FormattingEnabled = true;
-            CbxRes.Location = new Point(12, 98);
-            CbxRes.Name = "CbxRes";
-            CbxRes.Size = new Size(185, 23);
-            CbxRes.TabIndex = 4;
+            CbxResolution.FormattingEnabled = true;
+            CbxResolution.Location = new Point(12, 91);
+            CbxResolution.Name = "CbxResolution";
+            CbxResolution.Size = new Size(192, 23);
+            CbxResolution.TabIndex = 5;
             // 
             // FrmAutomaticScanning
             // 
@@ -130,8 +130,9 @@
         private Button BtnSettings;
         private Panel panel1;
         private ComboBox CbxRes;
-        private Label label2;
-        private ComboBox comboBox1;
+        private Label LbResolution;
+        private ComboBox CbxResolution;
         private Label LbScanner;
+        private ComboBox CbxScanner;
     }
 }

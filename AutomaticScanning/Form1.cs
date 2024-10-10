@@ -9,7 +9,7 @@ namespace AutomaticScanning
 
         private void FrmAutomaticScanning_Load(object sender, EventArgs e)
         {
-            FileHandler.StartupProgram();
+            //FileHandler.StartupProgram();
         }
     }
 }
