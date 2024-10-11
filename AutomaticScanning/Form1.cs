@@ -9,12 +9,8 @@ namespace AutomaticScanning
 
         private void FrmAutomaticScanning_Load(object sender, EventArgs e)
         {
-            if(!FileHandler.CheckJsonFileHasContent(FileHandler.UserScannerSettingsPath)){
-                FileHandler.StartupProgramFirstTime();
-            }
-            else{
-                FileHandler.StartupProgram();
-            }
+            FileHandler.StartupProgram();
+
         }
     }
 }
