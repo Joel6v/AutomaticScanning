@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AutomaticScanning
 {
-    internal class FileHandler
+    internal static class FileHandler
     {
         public static string UserFolderPath = AppContext.BaseDirectory + @"User\";
 
@@ -22,45 +22,22 @@ namespace AutomaticScanning
 
         public static void StartupProgram()
         {
-            ReadScannerSettingsJson();
+            UserScannerSettings = new UserScannerSettings();
             ReadSaveSettingsJson();
         }
 
         public static void StartupProgramFirstTime()
         {
-
+            UserScannerSettings = new UserScannerSettings();
+            UserSaveSettings = new UserSaveSettings();
+            WriteScannerSettingsJson();
+            WriteSaveSettingsJson();
         }
 
-        public static void ReadScannerSettingsJson()
+        public static bool CheckJsonFileHasContent(string path)
         {
-            string json = File.ReadAllText(UserScannerSettingsPath);
-            UserScannerSettings = JsonSerializer.Deserialize<UserScannerSettings>(json);
-        }
-
-        public static void WriteScannerSettingsJson()
-        {
-            JsonSerializerOptions options = new JsonSerializerOptions();
-            options.WriteIndented = true;
-            string json = JsonSerializer.Serialize(UserScannerSettings, options);
-            File.WriteAllText(UserScannerSettingsPath, json);
-        }
-
-        public static void ReadSaveSettingsJson()
-        {
-            string json = File.ReadAllText(UserSaveSettingsPath);
-            UserSaveSettings = JsonSerializer.Deserialize<UserSaveSettings>(json);
-        }
-
-        public static void WriteSaveSettingsJson()
-        {
-            JsonSerializerOptions options = new JsonSerializerOptions();
-            options.WriteIndented = true;
-            string json = JsonSerializer.Serialize(UserSaveSettings, options);
-            File.WriteAllText(UserSaveSettingsPath, json);
-        }
-
-        public bool CheckJsonFileHasContent(string path)
-        {
+            if(!File.Exists(path)) 
+                return false;
             string content = File.ReadAllText(path);
             return !string.IsNullOrEmpty(content);
         }
@@ -70,6 +47,39 @@ namespace AutomaticScanning
     {
         public string scanner {  get; set; } //what exactly this contains is known
         public int dpi { get; set; }
+
+        public UserScannerSettings()
+        {
+            scanner = string.Empty;
+            dpi = 300;
+        }
+
+        public void Read()
+        {
+            string json = File.ReadAllText(FileHandler.UserScannerSettingsPath);
+            FileHandler.UserScannerSettings = JsonSerializer.Deserialize<UserScannerSettings>(json);
+        }
+
+        public void Write()
+        {
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.WriteIndented = true;
+            string json = JsonSerializer.Serialize(this, options);
+
+            if (!FileHandler.CheckJsonFileHasContent(FileHandler.UserScannerSettingsPath)) //before because the FielStream occupies the resourcces
+            {
+                scanner = string.Empty;
+                dpi = 300;
+            }
+
+            using (FileStream fs = new FileStream(FileHandler.UserScannerSettingsPath, FileMode.OpenOrCreate))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.Write(json);
+                }
+            }
+        }
     }
 
     class UserSaveSettings
@@ -78,6 +88,41 @@ namespace AutomaticScanning
         public bool make_parent_folder {  get; set; }
         public string path_save {  get; set; } //not the folder name
         public string file_extension { get; set; } //without .
-        public bool override_file {  get; set; } //if the file names are the same. Otherwise the file would be not saved
+        public bool override_file {  get; set; } //if the file names are the same. Otherwise (if bool == false) the file would be not saved
+
+        public UserSaveSettings()
+        {
+            Write();
+        }
+
+        public void Read()
+        {
+            string json = File.ReadAllText(FileHandler.UserSaveSettingsPath);
+            FileHandler.UserSaveSettings = JsonSerializer.Deserialize<UserSaveSettings>(json);
+        }
+
+        public void Write()
+        {
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.WriteIndented = true;
+            string json = JsonSerializer.Serialize(this, options);
+
+            if (!FileHandler.CheckJsonFileHasContent(FileHandler.UserSaveSettingsPath))
+            {
+                aut_save = true;
+                make_parent_folder = true;
+                path_save = string.Empty;
+                file_extension = "pdf";
+                override_file = true;
+            }
+
+            using (FileStream fs = new FileStream(FileHandler.UserSaveSettingsPath, FileMode.OpenOrCreate))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.Write(json);
+                }
+            }
+        }
     }
 }
