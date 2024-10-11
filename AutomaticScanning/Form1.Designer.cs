@@ -31,10 +31,10 @@
             BtnScan = new Button();
             BtnSettings = new Button();
             panel1 = new Panel();
-            LbScanner = new Label();
-            CbxScanner = new ComboBox();
-            LbResolution = new Label();
             CbxResolution = new ComboBox();
+            LbResolution = new Label();
+            CbxScanner = new ComboBox();
+            LbScanner = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,23 +70,13 @@
             panel1.Size = new Size(207, 132);
             panel1.TabIndex = 6;
             // 
-            // LbScanner
+            // CbxResolution
             // 
-            LbScanner.AutoSize = true;
-            LbScanner.Font = new Font("Segoe UI", 12F);
-            LbScanner.Location = new Point(12, 5);
-            LbScanner.Name = "LbScanner";
-            LbScanner.Size = new Size(66, 21);
-            LbScanner.TabIndex = 1;
-            LbScanner.Text = "Scanner";
-            // 
-            // CbxScanner
-            // 
-            CbxScanner.FormattingEnabled = true;
-            CbxScanner.Location = new Point(12, 29);
-            CbxScanner.Name = "CbxScanner";
-            CbxScanner.Size = new Size(192, 23);
-            CbxScanner.TabIndex = 2;
+            CbxResolution.FormattingEnabled = true;
+            CbxResolution.Location = new Point(12, 91);
+            CbxResolution.Name = "CbxResolution";
+            CbxResolution.Size = new Size(192, 23);
+            CbxResolution.TabIndex = 5;
             // 
             // LbResolution
             // 
@@ -98,13 +88,24 @@
             LbResolution.TabIndex = 4;
             LbResolution.Text = "Auflösung (DPI)";
             // 
-            // CbxResolution
+            // CbxScanner
             // 
-            CbxResolution.FormattingEnabled = true;
-            CbxResolution.Location = new Point(12, 91);
-            CbxResolution.Name = "CbxResolution";
-            CbxResolution.Size = new Size(192, 23);
-            CbxResolution.TabIndex = 5;
+            CbxScanner.FormattingEnabled = true;
+            CbxScanner.Location = new Point(12, 29);
+            CbxScanner.MaxDropDownItems = 12;
+            CbxScanner.Name = "CbxScanner";
+            CbxScanner.Size = new Size(192, 23);
+            CbxScanner.TabIndex = 2;
+            // 
+            // LbScanner
+            // 
+            LbScanner.AutoSize = true;
+            LbScanner.Font = new Font("Segoe UI", 12F);
+            LbScanner.Location = new Point(12, 5);
+            LbScanner.Name = "LbScanner";
+            LbScanner.Size = new Size(66, 21);
+            LbScanner.TabIndex = 1;
+            LbScanner.Text = "Scanner";
             // 
             // FrmAutomaticScanning
             // 
