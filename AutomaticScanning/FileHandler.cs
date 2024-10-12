@@ -23,8 +23,14 @@ namespace AutomaticScanning
 
         public static void StartupProgram()
         {
+            if (!Directory.Exists(PathFolderUser))
+            {
+                Directory.CreateDirectory(PathFolderUser);
+            }
             UserScannerSettings = new UserScannerSettings();
+            UserScannerSettings.NewFile();
             UserSaveSettings = new UserSaveSettings();
+            UserSaveSettings.NewFile();
         }
 
         public static bool CheckJsonFileHasContent(string path)
@@ -42,29 +48,27 @@ namespace AutomaticScanning
         public int dpi { get; set; }
 
         public UserScannerSettings()
+        {         
+        }
+
+        public void NewFile()
         {
-            scanner = string.Empty;
-            dpi = 300;
-            Read();
+            if (FileHandler.CheckJsonFileHasContent(FileHandler.PathUserScannerSettings))
+            {
+                scanner = string.Empty;
+                dpi = 600;
+
+                Write();
+            }
         }
 
         public void Read()
         {
-            if (FileHandler.CheckJsonFileHasContent(FileHandler.PathUserScannerSettings))
-            {
-                string json = File.ReadAllText(FileHandler.PathUserScannerSettings);
-                UserScannerSettings obj = JsonSerializer.Deserialize<UserScannerSettings>(json);
-                scanner = obj.scanner;
-                dpi = obj.dpi;
-                obj = null;
-            }
-            else
-            {
-                scanner = string.Empty;
-                dpi = 300;
-
-                Write();
-            }
+            string json = File.ReadAllText(FileHandler.PathUserScannerSettings);
+            UserScannerSettings obj = JsonSerializer.Deserialize<UserScannerSettings>(json);
+            scanner = obj.scanner;
+            dpi = obj.dpi;
+            obj = null;
         }
 
         public void Write()
@@ -93,23 +97,11 @@ namespace AutomaticScanning
 
         public UserSaveSettings()
         {
-            Read();
         }
 
-        public void Read()
+        public void NewFile()
         {
-            if (FileHandler.CheckJsonFileHasContent(FileHandler.PathUserSaveSettings))
-            {
-                string json = File.ReadAllText(FileHandler.PathUserSaveSettings);
-                UserSaveSettings obj = JsonSerializer.Deserialize<UserSaveSettings>(json);
-                aut_save = obj.aut_save;
-                make_parent_folder = obj.make_parent_folder;
-                path_save = obj.path_save;
-                file_extension = obj.file_extension;
-                override_file = obj.override_file;
-                obj = null;
-            }
-            else
+            if (FileHandler.CheckJsonFileHasContent(FileHandler.PathUserScannerSettings))
             {
                 aut_save = true;
                 make_parent_folder = true;
@@ -119,6 +111,18 @@ namespace AutomaticScanning
 
                 Write();
             }
+        }
+
+        public void Read()
+        {
+            string json = File.ReadAllText(FileHandler.PathUserSaveSettings);
+            UserSaveSettings obj = JsonSerializer.Deserialize<UserSaveSettings>(json);
+            aut_save = obj.aut_save;
+            make_parent_folder = obj.make_parent_folder;
+            path_save = obj.path_save;
+            file_extension = obj.file_extension;
+            override_file = obj.override_file;
+            obj = null;
         }
 
         public void Write()

@@ -31,6 +31,8 @@
             BtnScan = new Button();
             BtnSettings = new Button();
             panel1 = new Panel();
+            BtnUpdate = new Button();
+            LbNoScanners = new Label();
             CbxResolution = new ComboBox();
             LbResolution = new Label();
             CbxScanner = new ComboBox();
@@ -42,7 +44,7 @@
             // 
             BtnScan.BackColor = Color.Gray;
             BtnScan.Font = new Font("Segoe UI", 12F);
-            BtnScan.Location = new Point(12, 189);
+            BtnScan.Location = new Point(12, 221);
             BtnScan.Name = "BtnScan";
             BtnScan.Size = new Size(207, 33);
             BtnScan.TabIndex = 5;
@@ -58,22 +60,46 @@
             BtnSettings.TabIndex = 0;
             BtnSettings.Text = "Einstellungen";
             BtnSettings.UseVisualStyleBackColor = true;
+            BtnSettings.Click += BtnSettings_Click;
             // 
             // panel1
             // 
+            panel1.Controls.Add(BtnUpdate);
+            panel1.Controls.Add(LbNoScanners);
             panel1.Controls.Add(CbxResolution);
             panel1.Controls.Add(LbResolution);
             panel1.Controls.Add(CbxScanner);
             panel1.Controls.Add(LbScanner);
             panel1.Location = new Point(12, 51);
             panel1.Name = "panel1";
-            panel1.Size = new Size(207, 132);
+            panel1.Size = new Size(207, 153);
             panel1.TabIndex = 6;
+            // 
+            // BtnUpdate
+            // 
+            BtnUpdate.Font = new Font("Segoe UI", 9F);
+            BtnUpdate.Location = new Point(157, 55);
+            BtnUpdate.Name = "BtnUpdate";
+            BtnUpdate.Size = new Size(47, 23);
+            BtnUpdate.TabIndex = 7;
+            BtnUpdate.Text = "Laden";
+            BtnUpdate.UseVisualStyleBackColor = true;
+            BtnUpdate.Click += BtnUpdate_Click;
+            // 
+            // LbNoScanners
+            // 
+            LbNoScanners.AutoSize = true;
+            LbNoScanners.Font = new Font("Segoe UI", 9F);
+            LbNoScanners.Location = new Point(12, 59);
+            LbNoScanners.Name = "LbNoScanners";
+            LbNoScanners.Size = new Size(16, 15);
+            LbNoScanners.TabIndex = 6;
+            LbNoScanners.Text = "   ";
             // 
             // CbxResolution
             // 
             CbxResolution.FormattingEnabled = true;
-            CbxResolution.Location = new Point(12, 91);
+            CbxResolution.Location = new Point(12, 119);
             CbxResolution.Name = "CbxResolution";
             CbxResolution.Size = new Size(192, 23);
             CbxResolution.TabIndex = 5;
@@ -82,7 +108,7 @@
             // 
             LbResolution.AutoSize = true;
             LbResolution.Font = new Font("Segoe UI", 12F);
-            LbResolution.Location = new Point(12, 67);
+            LbResolution.Location = new Point(12, 95);
             LbResolution.Name = "LbResolution";
             LbResolution.Size = new Size(119, 21);
             LbResolution.TabIndex = 4;
@@ -92,7 +118,6 @@
             // 
             CbxScanner.FormattingEnabled = true;
             CbxScanner.Location = new Point(12, 29);
-            CbxScanner.MaxDropDownItems = 12;
             CbxScanner.Name = "CbxScanner";
             CbxScanner.Size = new Size(192, 23);
             CbxScanner.TabIndex = 2;
@@ -111,7 +136,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(231, 235);
+            ClientSize = new Size(231, 266);
             Controls.Add(panel1);
             Controls.Add(BtnSettings);
             Controls.Add(BtnScan);
@@ -135,5 +160,7 @@
         private ComboBox CbxResolution;
         private Label LbScanner;
         private ComboBox CbxScanner;
+        private Label LbNoScanners;
+        private Button BtnUpdate;
     }
 }

@@ -37,7 +37,7 @@ namespace AutomaticScanning
             }
             catch (COMException ex)
             {
-                throw ex;
+                MessageBox.Show(ex.ToString(), "Fehler", MessageBoxButtons.OK);
             }
         }
 
