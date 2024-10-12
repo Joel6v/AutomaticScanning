@@ -16,10 +16,12 @@ namespace AutomaticScanning
         public static string PathFolderUser = AppContext.BaseDirectory + @"User\";
 
         public static string PathUserScannerSettings = PathFolderUser + "ScannerSettings.json";
-        public static UserScannerSettings UserScannerSettings;
+        public static UserScannerSettings UserScannerSettingsStorage; //for default, if aut_save is on then update when closing the program
+        public static UserScannerSettings UserScannerSettingsCurrent; //for changed settings or communication with devices
 
         public static string PathUserSaveSettings = PathFolderUser + "SaveSettings.json";
-        public static UserSaveSettings UserSaveSettings;
+        public static UserSaveSettings UserSaveSettingsStorage;
+        public static UserSaveSettings UserSaveSettingsCurrent;
 
         public static void StartupProgram()
         {
@@ -27,10 +29,13 @@ namespace AutomaticScanning
             {
                 Directory.CreateDirectory(PathFolderUser);
             }
-            UserScannerSettings = new UserScannerSettings();
-            UserScannerSettings.NewFile();
-            UserSaveSettings = new UserSaveSettings();
-            UserSaveSettings.NewFile();
+            UserScannerSettingsStorage = new UserScannerSettings();
+            UserScannerSettingsStorage.NewFile();
+            UserScannerSettingsCurrent = UserScannerSettingsStorage;
+
+            UserSaveSettingsStorage = new UserSaveSettings();
+            UserSaveSettingsStorage.NewFile();
+            UserSaveSettingsCurrent = UserSaveSettingsStorage;
         }
 
         public static bool CheckJsonFileHasContent(string path)

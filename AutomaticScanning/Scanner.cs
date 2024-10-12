@@ -27,7 +27,7 @@ namespace AutomaticScanning
                 ScannersList = new List<WIA.DeviceInfo>();
                 DeviceManager deviceManager = new DeviceManager();
 
-                for (int i = 0; i <= deviceManager.DeviceInfos.Count; i++)
+                for (int i = 1; i <= deviceManager.DeviceInfos.Count; i++) //unknown whether the index starts at 1
                 {
                     if (deviceManager.DeviceInfos[i].Type == WiaDeviceType.ScannerDeviceType)
                     {
@@ -41,7 +41,7 @@ namespace AutomaticScanning
             }
         }
 
-        public Bitmap Scan(int selectedScannerIndex, int dpi)
+        public Bitmap Scan(int selectedScannerIndex)
         {
             try
             {
@@ -50,10 +50,10 @@ namespace AutomaticScanning
                 Item scanerItem = device.Items[0];
 
                 Property propertyH = scanerItem.Properties.get_Item(6147); //Horizontal DPI
-                propertyH.set_Value(dpi);
+                propertyH.set_Value(FileHandler.UserScannerSettingsCurrent.dpi);
 
                 Property propertyV = scanerItem.Properties.get_Item(6148); //Vertical DPI
-                propertyV.set_Value(dpi);
+                propertyV.set_Value(FileHandler.UserScannerSettingsCurrent.dpi);
 
                 ImageFile imgFile = (ImageFile)scanerItem.Transfer("{B96B3CAB-0728-11D3-9D7B-0000F81EF32E}"); //{B9...} stands for as Bitmap
                 return ConvertImageFileToBitmap(imgFile);

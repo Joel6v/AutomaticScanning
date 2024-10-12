@@ -17,7 +17,7 @@ namespace AutomaticScanning
 
             string[] dpiToSet = { "300", "450", "600", "900", "1200" };
             CbxResolution.Items.AddRange(dpiToSet);
-            CbxResolution.SelectedItem = FileHandler.UserScannerSettings.dpi.ToString();
+            CbxResolution.SelectedItem = FileHandler.UserScannerSettingsStorage.dpi.ToString();
         }
 
         private void BtnUpdate_Click(object sender, EventArgs e)
@@ -34,9 +34,9 @@ namespace AutomaticScanning
                 for (int i = 0; i < scanner.ScannersList.Count; i++)
                 {
                     scannerNames.Add(scanner.ScannersList[i].Properties["Name"].get_Value());
-                    if (scanner.ScannersList[i].Properties["Name"].get_Value() == FileHandler.UserScannerSettings.scanner)
+                    if (scanner.ScannersList[i].Properties["Name"].get_Value() == FileHandler.UserScannerSettingsStorage.scanner)
                     {
-                        CbxScanner.SelectedItem = FileHandler.UserScannerSettings.scanner;
+                        CbxScanner.SelectedItem = FileHandler.UserScannerSettingsStorage.scanner;
                     }
                 }
                 CbxScanner.Items.AddRange(scannerNames.ToArray());
@@ -55,7 +55,13 @@ namespace AutomaticScanning
 
         private void BtnSettings_Click(object sender, EventArgs e)
         {
+            new FrmSettings().ShowDialog();
+        }
 
+        private void BtnScan_Click(object sender, EventArgs e)
+        {
+            FileHandler.UserScannerSettingsCurrent.dpi = Convert.ToInt32(CbxResolution.SelectedItem.ToString());
+            FileHandler.UserScannerSettingsCurrent.scanner = CbxScanner.SelectedItem.ToString();
         }
     }
 }
