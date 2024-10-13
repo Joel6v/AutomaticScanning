@@ -11,8 +11,9 @@ namespace AutomaticScanning
 {
     public class Scanner
     {
-        public List<WIA.DeviceInfo> ScannersList { get; private set; }
+        public List<WIA.DeviceInfo> ScannersList { get; private set; }       
         public int ScannerListCount { get; private set; } //for testing reasons
+        public DeviceInfo SelectedScanner {  get; set; }
 
         public Scanner()
         {
@@ -21,11 +22,12 @@ namespace AutomaticScanning
         }
 
         private void GetScanners()
-        {
+        {            
+            ScannersList = new List<WIA.DeviceInfo>();
+            DeviceManager deviceManager = new DeviceManager();
             try
             {
-                ScannersList = new List<WIA.DeviceInfo>();
-                DeviceManager deviceManager = new DeviceManager();
+
 
                 for (int i = 1; i <= deviceManager.DeviceInfos.Count; i++) //unknown whether the index starts at 1
                 {
@@ -45,8 +47,7 @@ namespace AutomaticScanning
         {
             try
             {
-                DeviceInfo selectedScanner = ScannersList[selectedScannerIndex];
-                var device = selectedScanner.Connect();
+                var device = SelectedScanner.Connect();
                 Item scanerItem = device.Items[0];
 
                 Property propertyH = scanerItem.Properties.get_Item(6147); //Horizontal DPI

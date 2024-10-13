@@ -16,7 +16,7 @@ namespace AutomaticScanning
         public static string PathFolderUser = AppContext.BaseDirectory + @"User\";
 
         public static string PathUserScannerSettings = PathFolderUser + "ScannerSettings.json";
-        public static UserScannerSettings UserScannerSettingsStorage; //for default, if aut_save is on then update when closing the program
+        public static UserScannerSettings UserScannerSettingsStorage; //for default and if aut_save is on then update when closing the program
         public static UserScannerSettings UserScannerSettingsCurrent; //for changed settings or communication with devices
 
         public static string PathUserSaveSettings = PathFolderUser + "SaveSettings.json";
@@ -30,11 +30,11 @@ namespace AutomaticScanning
                 Directory.CreateDirectory(PathFolderUser);
             }
             UserScannerSettingsStorage = new UserScannerSettings();
-            UserScannerSettingsStorage.NewFile();
+            if (!UserScannerSettingsStorage.NewFile()) { UserScannerSettingsStorage.Read(); }
             UserScannerSettingsCurrent = UserScannerSettingsStorage;
 
             UserSaveSettingsStorage = new UserSaveSettings();
-            UserSaveSettingsStorage.NewFile();
+            if (!UserSaveSettingsStorage.NewFile()) { UserSaveSettingsStorage.Read(); }
             UserSaveSettingsCurrent = UserSaveSettingsStorage;
         }
 
@@ -42,7 +42,7 @@ namespace AutomaticScanning
         {
             if(!File.Exists(path)) 
                 return false;
-            string content = File.ReadAllText(path);
+            string content = File.ReadAllText(path); //for future savety
             return !string.IsNullOrEmpty(content);
         }
     }
@@ -56,15 +56,18 @@ namespace AutomaticScanning
         {         
         }
 
-        public void NewFile()
+        public bool NewFile()
         {
-            if (FileHandler.CheckJsonFileHasContent(FileHandler.PathUserScannerSettings))
+            if (!FileHandler.CheckJsonFileHasContent(FileHandler.PathUserScannerSettings))
             {
                 scanner = string.Empty;
                 dpi = 600;
 
                 Write();
+                return true;
             }
+
+            return false;
         }
 
         public void Read()
@@ -86,7 +89,7 @@ namespace AutomaticScanning
             {
                 using (StreamWriter sw = new StreamWriter(fs))
                 {
-                    sw.Write(json);
+                    sw.WriteLine(json);                    
                 }
             }
         }
@@ -104,9 +107,9 @@ namespace AutomaticScanning
         {
         }
 
-        public void NewFile()
+        public bool NewFile()
         {
-            if (FileHandler.CheckJsonFileHasContent(FileHandler.PathUserScannerSettings))
+            if (!FileHandler.CheckJsonFileHasContent(FileHandler.PathUserScannerSettings))
             {
                 aut_save = true;
                 make_parent_folder = true;
@@ -115,7 +118,11 @@ namespace AutomaticScanning
                 override_file = true;
 
                 Write();
+
+                return true;
             }
+
+            return false;
         }
 
         public void Read()
@@ -140,7 +147,7 @@ namespace AutomaticScanning
             {
                 using (StreamWriter sw = new StreamWriter(fs))
                 {
-                    sw.Write(json);
+                    sw.WriteLine(json);
                 }
             }
         }

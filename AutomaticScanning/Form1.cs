@@ -15,7 +15,9 @@ namespace AutomaticScanning
 
             LoadScannerCbx();
 
+            //For the CbxResolution
             string[] dpiToSet = { "300", "450", "600", "900", "1200" };
+            CbxResolution.Items.Clear();
             CbxResolution.Items.AddRange(dpiToSet);
             CbxResolution.SelectedItem = FileHandler.UserScannerSettingsStorage.dpi.ToString();
         }
@@ -27,7 +29,9 @@ namespace AutomaticScanning
 
         private void LoadScannerCbx()
         {
+            CbxScanner.Items.Clear();
             Scanner scanner = new Scanner();
+            string defaultScanner = "";
             if (scanner.ScannersList.Count > 0)
             {
                 List<string> scannerNames = new List<string>();
@@ -36,10 +40,20 @@ namespace AutomaticScanning
                     scannerNames.Add(scanner.ScannersList[i].Properties["Name"].get_Value());
                     if (scanner.ScannersList[i].Properties["Name"].get_Value() == FileHandler.UserScannerSettingsStorage.scanner)
                     {
-                        CbxScanner.SelectedItem = FileHandler.UserScannerSettingsStorage.scanner;
+                        defaultScanner = FileHandler.UserScannerSettingsStorage.scanner;
                     }
                 }
+
                 CbxScanner.Items.AddRange(scannerNames.ToArray());
+
+                if (string.IsNullOrEmpty(defaultScanner)) //must be after the "AddRange" otherwise it will be reset
+                {
+                    CbxScanner.SelectedItem = scannerNames[0];
+                }
+                else
+                {
+                    CbxScanner.SelectedItem = defaultScanner;
+                }
 
                 LbNoScanners.Text = "";
                 CbxScanner.Enabled = true;
@@ -62,6 +76,17 @@ namespace AutomaticScanning
         {
             FileHandler.UserScannerSettingsCurrent.dpi = Convert.ToInt32(CbxResolution.SelectedItem.ToString());
             FileHandler.UserScannerSettingsCurrent.scanner = CbxScanner.SelectedItem.ToString();
+        }
+
+        private void FrmAutomaticScanning_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (FileHandler.UserSaveSettingsCurrent.aut_save)
+            {
+                FileHandler.UserScannerSettingsStorage = FileHandler.UserScannerSettingsCurrent;
+                FileHandler.UserScannerSettingsStorage.Write();
+                FileHandler.UserSaveSettingsStorage = FileHandler.UserSaveSettingsCurrent;
+                FileHandler.UserSaveSettingsStorage.Write();
+            }
         }
     }
 }

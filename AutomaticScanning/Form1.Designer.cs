@@ -117,6 +117,7 @@
             Controls.Add(BtnScan);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FrmAutomaticScanning";
+            FormClosing += FrmAutomaticScanning_FormClosing;
             Load += FrmAutomaticScanning_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
