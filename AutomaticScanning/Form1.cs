@@ -76,6 +76,8 @@ namespace AutomaticScanning
         {
             FileHandler.UserScannerSettingsCurrent.dpi = Convert.ToInt32(CbxResolution.SelectedItem.ToString());
             FileHandler.UserScannerSettingsCurrent.scanner = CbxScanner.SelectedItem.ToString();
+            FrmScanning frmScanning = new FrmScanning();
+            frmScanning.ShowDialog();
         }
 
         private void FrmAutomaticScanning_FormClosing(object sender, FormClosingEventArgs e)
